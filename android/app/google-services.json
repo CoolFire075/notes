@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1003276865556",
+    "firebase_url": "https://coolfire075-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "coolfire075",
+    "storage_bucket": "coolfire075.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1003276865556:android:ba18e9039773e253c41701",
+        "android_client_info": {
+          "package_name": "com.example.notes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDasdXuDU2JIoZ6wZDnlThiKI576xyWOeE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,43 @@
+name: notes
+description: "A new Flutter project."
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.8
+  go_router: ^14.2.7
+  flutter_bloc: ^8.1.6
+  intl: ^0.19.0
+  get_it: ^7.7.0
+  flutter_localizations:
+    sdk: flutter
+  equatable: ^2.0.5
+  sqflite: ^2.3.3+1
+  path: ^1.9.0
+  firebase_core: ^3.4.1
+  firebase_database: ^11.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^4.0.0
+
+flutter:
+
+  uses-material-design: true
+
+flutter_intl:
+  enabled: true
+  main_locale: ru
+
+
