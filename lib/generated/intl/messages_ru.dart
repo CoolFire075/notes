@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "enter_text": MessageLookupByLibrary.simpleMessage("Введите текст"),
         "enter_title":
             MessageLookupByLibrary.simpleMessage("Введите заголовок"),
+        "login": MessageLookupByLibrary.simpleMessage("Зарегаться"),
         "not_create": MessageLookupByLibrary.simpleMessage("Создание заметки"),
         "note_edit":
             MessageLookupByLibrary.simpleMessage("Редактирование заметки"),
