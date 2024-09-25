@@ -14,36 +14,68 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-      getIt<ProfileBloc>()
-        ..add(ProfileUserSubscribed())..add(ProfileCurrentUserLoaded()),
+      create: (context) => getIt<ProfileBloc>()
+        ..add(ProfileUserSubscribed())
+        ..add(ProfileCurrentUserLoaded()),
       child: Scaffold(
         appBar: AppBar(
           title: Text('PROFILE'),
         ),
-        body: Column(
-          children: [
-            Row(
-              children: [
-                _ProfileImage(),
-                Column(
-                  children: [
-                    _EmailText(),
-                    _UsernameText()
-                  ],
-                ),
-              ],
-            ),
-            TextButton(
-                onPressed: () {
-                  context.go(LoginRoute.navigationRoute);
-                },
-                child: Text(S
-                    .of(context)
-                    .login))
-          ],
-        ),
+        body: _Body(),
       ),
+    );
+  }
+}
+
+class _Body extends StatelessWidget {
+  const _Body({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ProfileBloc, ProfileState>(
+      builder: (context, state) {
+        final user = state.user;
+        final isLoading = state.isLoading;
+        if (isLoading) return const Center(child: CircularProgressIndicator());
+        if (user == null) return _AuthorizeButton();
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  _ProfileImage(),
+                  Column(
+                    children: [
+                      _EmailText(),
+                      _UsernameText(),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _AuthorizeButton extends StatelessWidget {
+  const _AuthorizeButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: TextButton(
+          onPressed: () {
+            context.go(LoginRoute.navigationRoute);
+          },
+          child: Text(S.of(context).login)),
     );
   }
 }
@@ -100,6 +132,25 @@ class _UsernameText extends StatelessWidget {
         final email = state.user?.email;
         if (email == null) return const SizedBox();
         return Text(email);
+      },
+    );
+  }
+}
+
+class _SignOutButton extends StatelessWidget {
+  const _SignOutButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final bloc = context.read<ProfileBloc>();
+    return BlocBuilder<ProfileBloc, ProfileState>(
+      builder: (context, state) {
+        if (state.user == null) return const SizedBox();
+        return IconButton(
+            onPressed: () {
+              bloc.add(ProfileLogOutButtonClicked());
+            },
+            icon: const Icon(Icons.exit_to_app));
       },
     );
   }

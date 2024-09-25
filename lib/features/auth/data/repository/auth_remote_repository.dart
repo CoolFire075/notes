@@ -6,5 +6,9 @@ abstract class AuthRemoteRepository {
 
   Future<OAuthCredential> getGoogleCredential();
 
-  Future<UserCredential> signInWithGoogle();
+  Future<UserCredential> signInWithGoogle(OAuthCredential credential);
+
+  Future<UserCredential> signInWithCredential(OAuthCredential credential);
+
+  Future<void> logOut();
 }

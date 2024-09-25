@@ -5,4 +5,5 @@ abstract class AuthLocalRepository {
 
   void saveUser(User user);
   User? getUser();
+  void logOut();
 }

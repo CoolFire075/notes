@@ -1,14 +1,14 @@
- import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:notes/features/auth/data/repository/auth_remote_repository.dart';
 import 'package:notes/features/auth/data/service/firebase_auth_service.dart';
 
-class AuthRemoteRepositoryImpl implements AuthRemoteRepository{
+class AuthRemoteRepositoryImpl implements AuthRemoteRepository {
   final FirebaseAuthService _authService;
 
   AuthRemoteRepositoryImpl({
     required FirebaseAuthService authService,
-}) : _authService = authService;
+  }) : _authService = authService;
 
   @override
   Stream<User?> observeAuthState() {
@@ -26,7 +26,7 @@ class AuthRemoteRepositoryImpl implements AuthRemoteRepository{
   }
 
   @override
-  Future<OAuthCredential> getGoogleCredential() async{
+  Future<OAuthCredential> getGoogleCredential() async {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
     final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
@@ -35,6 +35,11 @@ class AuthRemoteRepositoryImpl implements AuthRemoteRepository{
       accessToken: googleAuth?.accessToken,
       idToken: googleAuth?.idToken,
     );
-return credential;
+    return credential;
+  }
+
+  @override
+  Future<void> logOut() {
+    return _authService.logout();
   }
 }

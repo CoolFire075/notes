@@ -1,19 +1,21 @@
 part of 'profile_bloc.dart';
 
- class ProfileState extends Equatable {
-
+class ProfileState extends Equatable {
+  final bool isLoading;
   final User? user;
 
-  const ProfileState({this.user});
+  const ProfileState({required this.isLoading, this.user});
 
   ProfileState copyWith({
-   User? user,
- }){
-   return ProfileState(
-    user: user ?? this.user,
-   );
+    bool? isLoading,
+    User? Function()? user,
+  }) {
+    return ProfileState(
+      isLoading: isLoading ?? this.isLoading,
+      user: user != null ? user() : this.user,
+    );
   }
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [user, isLoading];
 }

@@ -14,22 +14,30 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   })  : _authInteractor = authInteractor,
         super(const AuthState()) {
     on<AuthUserSubscribed>(_onAuthUserSubscribed);
+    on<AuthUserChanged>(_onAuthUserChanged);
   }
-
 
   final AuthInteractor _authInteractor;
 
   void _onAuthUserSubscribed(
-      AuthUserSubscribed event,
-      Emitter<AuthState> emit,
-      ) {
+    AuthUserSubscribed event,
+    Emitter<AuthState> emit,
+  ) {
     _authInteractor.observeUser().listen((user) {
-      emit(state.copyWith(user: user));
+      add(AuthUserChanged(user: user));
+      // emit(state.copyWith(user: user));
 
       print('I work');
-      if(user != null){
+      if (user != null) {
         _authInteractor.saveUser(user);
       }
     });
+  }
+
+  void _onAuthUserChanged(
+    AuthUserChanged event,
+    Emitter<AuthState> emit,
+  ) {
+    emit(state.copyWith(user: event.user));
   }
 }

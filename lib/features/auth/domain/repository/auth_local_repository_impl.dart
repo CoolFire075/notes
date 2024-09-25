@@ -22,4 +22,10 @@ class AuthLocalRepositoryImpl implements AuthLocalRepository {
   void saveUser(User user) {
     _user = user;
   }
+
+  @override
+  void logOut() {
+    _user = null;
+    addToStream(null);
+  }
 }

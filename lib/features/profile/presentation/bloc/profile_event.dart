@@ -8,4 +8,13 @@ sealed class ProfileEvent extends Equatable {
 }
 
 class ProfileUserSubscribed extends ProfileEvent {}
+class ProfileUserChanged extends ProfileEvent{
+  final User? user;
+
+  const ProfileUserChanged({required this.user});
+
+  @override
+  List<Object?> get props => [user];
+}
 class ProfileCurrentUserLoaded extends ProfileEvent{}
+class ProfileLogOutButtonClicked extends ProfileEvent{}

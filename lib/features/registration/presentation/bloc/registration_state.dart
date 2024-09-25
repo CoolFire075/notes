@@ -1,16 +1,16 @@
-part of 'login_bloc.dart';
+part of 'registration_bloc.dart';
 
-class LoginState extends Equatable {
+class RegistrationState extends Equatable {
   final bool isLoading;
   final bool needPop;
 
-  const LoginState({required this.isLoading, required this.needPop});
+  const RegistrationState({required this.isLoading, required this.needPop});
 
-  LoginState copyWith({
+  RegistrationState copyWith({
     bool? isLoading,
     bool? needPop,
   }) {
-    return LoginState(
+    return RegistrationState(
       isLoading: isLoading ?? this.isLoading,
       needPop: needPop ?? this.needPop,
     );
